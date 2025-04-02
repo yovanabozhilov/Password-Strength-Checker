@@ -18,7 +18,6 @@ public:
         loadWeakPasswords();
     }
 
-    // Učitavanje slabih lozinki iz fajla
     void loadWeakPasswords() {
         std::ifstream file("weakPasswords.txt");
         if (!file) {
@@ -33,9 +32,7 @@ public:
         file.close();
     }
 
-    // Provera jačine lozinke
     std::string checkPasswordStrength(const std::string &password) {
-        // Ako se lozinka nalazi u weakPasswords.txt, odmah je slaba
         if (weakPasswords.find(password) != weakPasswords.end()) {
             return "Weak: This password is commonly used and insecure.";
         }
@@ -62,7 +59,6 @@ public:
         return "Weak: Password is too weak for security.";
     }
 
-    // Generisanje slučajne jake lozinke
     std::string generatePassword(int length = 16) {
         const std::string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(),.?\":{}|<>";
 
@@ -74,7 +70,6 @@ public:
         return password;
     }
 
-    // Export rezultata u JSON
     void exportResults(const std::vector<std::string> &results) {
         Json::Value root;
         for (const auto &result : results) {
